@@ -1,0 +1,559 @@
+[{
+  "Name": "Push Ups",
+  "Group": "Chest",
+  "Type": "Strength",
+  "Variations": ["Bodyweight"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Bench Presses",
+  "Group": "Chest",
+  "Type": "Strength",
+  "Variations": ["Dumbbell", "Barbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Flyes",
+  "Group": "Chest",
+  "Type": "Strength",
+  "Variations": ["Dumbbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Landmine Chest Presses",
+  "Group": "Chest",
+  "Type": "Strength",
+  "Variations": ["Barbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Overhead Presses",
+  "Group": "Shoulder",
+  "Type": "Strength",
+  "Variations": ["Dumbbell", "Barbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Bent-Over Reverse Flyes",
+  "Group": "Shoulder",
+  "Type": "Strength",
+  "Variations": ["Dumbbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Lateral Raises",
+  "Group": "Shoulder",
+  "Type": "Strength",
+  "Variations": ["Dumbbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Front Raises",
+  "Group": "Shoulder",
+  "Type": "Strength",
+  "Variations": ["Dumbbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Hammer Curls",
+  "Group": "Bicep",
+  "Type": "Strength",
+  "Variations": ["Dumbbell", "Barbell", "Cable Machine"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Zottman Curls",
+  "Group": "Bicep",
+  "Type": "Strength",
+  "Variations": ["Dumbbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Skullcrushers",
+  "Group": "Tricep",
+  "Type": "Strength",
+  "Variations": ["Dumbbell", "Barbell", "Weight Plate"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Dips",
+  "Group": "Tricep",
+  "Type": "Strength",
+  "Variations": ["Bodyweight"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Push-Downs",
+  "Group": "Tricep",
+  "Type": "Strength",
+  "Variations": ["Cable Machine", "Weight Machine"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Tricep Kickbacks",
+  "Group": "Tricep",
+  "Type": "Strength",
+  "Variations": ["Dumbbell", "Kettlebell", "Weight Plate"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Seated Overhead Extensions",
+  "Group": "Tricep",
+  "Type": "Strength",
+  "Variations": ["Dumbbell", "Barbell", "Weight Plate"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Lat Pulldowns",
+  "Group": "Back",
+  "Type": "Strength",
+  "Variations": ["Weight Machine"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Bent-Over Rows",
+  "Group": "Back",
+  "Type": "Strength",
+  "Variations": ["Dumbbell", "Barbell", "Weight Plate"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Standing Rows",
+  "Group": "Back",
+  "Type": "Strength",
+  "Variations": ["Barbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Seated Rows",
+  "Group": "Back",
+  "Type": "Strength",
+  "Variations": ["Cable Machine", "Weight Machine"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Deadlifts",
+  "Group": "Back",
+  "Type": "Strength",
+  "Variations": ["Dumbbell", "Barbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Pull Ups",
+  "Group": "Back",
+  "Type": "Strength",
+  "Variations": ["Bodyweight"],
+  "Min": 2,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Reverse Crunches",
+  "Group": "Ab",
+  "Type": "Strength",
+  "Variations": ["Bodyweight"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Push Up Planks",
+  "Group": "Ab",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Weight Plate"],
+  "Min": 10,
+  "Max": 120,
+  "Step": 10,
+  "Unit": "seconds"
+},{
+  "Name": "Forearm Planks",
+  "Group": "Ab",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Weight Plate"],
+  "Min": 10,
+  "Max": 120,
+  "Step": 10,
+  "Unit": "seconds"
+},{
+  "Name": "RKC Planks",
+  "Group": "Ab",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Weight Plate"],
+  "Min": 10,
+  "Max": 120,
+  "Step": 10,
+  "Unit": "seconds"
+},{
+  "Name": "Dragon Flags",
+  "Group": "Ab",
+  "Type": "Strength",
+  "Variations": ["Bodyweight"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Landmine 180s",
+  "Group": "Ab",
+  "Type": "Strength",
+  "Variations": ["Barbell"],
+  "Min": 4,
+  "Max": 30,
+  "Step": 2,
+  "Unit": "reps"
+},{
+  "Name": "Rollout",
+  "Group": "Ab",
+  "Type": "Strength",
+  "Variations": ["Ab-Wheel"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Glute Bridges",
+  "Group": "Glute",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Dumbbell", "Weight Plate"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Clamshells",
+  "Group": "Glute",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Resistance Band"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Swings",
+  "Group": "Glute",
+  "Type": "Strength",
+  "Variations": ["Kettlebell", "Dumbbell"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Hip Thrusts",
+  "Group": "Glute",
+  "Type": "Strength",
+  "Variations": ["Barbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "High Step Ups",
+  "Group": "Glute",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Dumbbell"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Quadruped Hip Extensions",
+  "Group": "Glute",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Resistance Band"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Walking Diagonal Lunges",
+  "Group": "Glute",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Dumbbell", "Weight Plate"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Extended Range Side Lying Hip Abductions",
+  "Group": "Glute",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Resistance Band"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Jump Squats",
+  "Group": "Leg",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Dumbbell", "Weight Plate"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Goblet Squats",
+  "Group": "Leg",
+  "Type": "Strength",
+  "Variations": ["Dumbbell", "Weight Plate"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Back Squats",
+  "Group": "Leg",
+  "Type": "Strength",
+  "Variations": ["Barbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Romanian Deadlifts",
+  "Group": "Leg",
+  "Type": "Strength",
+  "Variations": ["Dumbbell", "Barbell"],
+  "Min": 3,
+  "Max": 30,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Standing Calf Raises",
+  "Group": "Leg",
+  "Type": "Strength",
+  "Variations": ["Bodyweight", "Dumbbell", "Weight Plate"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Run",
+  "Group": "Running",
+  "Type": "Cardio",
+  "Variations": ["Treadmill", "Elliptical", "Outdoor"],
+  "Min": 2,
+  "Max": 120,
+  "Step": 0.5,
+  "Unit": "minutes"
+},{
+  "Name": "Walk",
+  "Group": "Running",
+  "Type": "Cardio",
+  "Variations": ["Treadmill", "Elliptical", "Outdoor"],
+  "Min": 2,
+  "Max": 120,
+  "Step": 0.5,
+  "Unit": "minutes"
+},{
+  "Name": "Bike",
+  "Group": "Biking",
+  "Type": "Cardio",
+  "Variations": ["Road", "Mountain", "Stationary"],
+  "Min": 2,
+  "Max": 120,
+  "Step": 1,
+  "Unit": "minutes"
+},{
+  "Name": "Freestyle",
+  "Group": "Swimming",
+  "Type": "Cardio",
+  "Variations": ["Pool", "Open Water"],
+  "Min": 50,
+  "Max": 1600,
+  "Step": 50,
+  "Unit": "meters"
+},{
+  "Name": "Breaststroke",
+  "Group": "Swimming",
+  "Type": "Cardio",
+  "Variations": ["Pool", "Open Water"],
+  "Min": 50,
+  "Max": 1600,
+  "Step": 50,
+  "Unit": "meters"
+},{
+  "Name": "Backstroke",
+  "Group": "Swimming",
+  "Type": "Cardio",
+  "Variations": ["Pool", "Open Water"],
+  "Min": 50,
+  "Max": 1600,
+  "Step": 50,
+  "Unit": "meters"
+},{
+  "Name": "Butterfly",
+  "Group": "Swimming",
+  "Type": "Cardio",
+  "Variations": ["Pool", "Open Water"],
+  "Min": 50,
+  "Max": 1600,
+  "Step": 50,
+  "Unit": "meters"
+},{
+  "Name": "Push Ups",
+  "Group": "Straight",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Sit Ups",
+  "Group": "Straight",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 8,
+  "Max": 200,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Squats",
+  "Group": "Straight",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 8,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Mountain Climbers",
+  "Group": "Straight",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 8,
+  "Max": 100,
+  "Step": 2,
+  "Unit": "reps"
+},{
+  "Name": "Burpees",
+  "Group": "Straight",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 3,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Butt Kicks",
+  "Group": "Straight",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 8,
+  "Max": 100,
+  "Step": 2,
+  "Unit": "reps"
+},{
+  "Name": "Jump Squats",
+  "Group": "Straight",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 4,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Jumping Lunges",
+  "Group": "Straight",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 4,
+  "Max": 100,
+  "Step": 2,
+  "Unit": "reps"
+},{
+  "Name": "Forearm Planks",
+  "Group": "Straight",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 10,
+  "Max": 60,
+  "Step": 10,
+  "Unit": "seconds"
+},{
+  "Name": "Jumping Jacks",
+  "Group": "Side",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 10,
+  "Max": 200,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Bicycles",
+  "Group": "Straight",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 8,
+  "Max": 100,
+  "Step": 2,
+  "Unit": "reps"
+},{
+  "Name": "Side Lunges",
+  "Group": "Side",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 8,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Plank Jacks",
+  "Group": "Side",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 10,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+},{
+  "Name": "Lateral Plank Walks",
+  "Group": "Side",
+  "Type": "HIIT",
+  "Variations": ["Bodyweight"],
+  "Min": 8,
+  "Max": 100,
+  "Step": 1,
+  "Unit": "reps"
+}]

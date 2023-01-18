@@ -1,22 +1,24 @@
+
+
 from pyfiglet import Figlet
-from . import routine
-from . import prompt
-from . import exercises
+import routine
+import prompt
+import exercises
 import xlsxwriter
 
 @prompt.click.command()
 def main():
     """Generate custom strength, cardio, and HIIT exercise routines using parametric curves"""
 
-    # splash screen
+    # 스크린 장면
     prompt.click.clear()
     prompt.click.echo(Figlet(font="standard").renderText("Routinemaker"))
-    prompt.lecho("Routinemaker generates strength, cardio, and HIIT exercise routines using parametric curves. Let's get started!")
+    prompt.lecho("Routinemaker는 파라메트릭 공선을 사용하여 strength, cardio, 그리고 HIIT 운동 루틴을 생성한다. 시작해보자!")
 
-    # choose routine type
-    type = prompt.options("What type of routine do you want to create?", ["Strength", "Cardio", "HIIT"])
+    # 루틴 타입 선택
+    type = prompt.options("어떤 유형의 루틴을 생성하시겠습니까?", ["Strength", "Cardio", "HIIT"])
 
-    # configure strength routines
+    # 강도 루틴 구성
     if type == 1:
         # check for equipment and narrow exercises to pool
         equipment = ["Bodyweight"]

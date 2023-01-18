@@ -1,119 +1,120 @@
-from . import prompt
-from . import exercises
+
+import prompt
+import exercises
 import numpy as np
 import random
-import xlsxwriter
+import xlsxwriter  #엑셀 작업 자동화
 
-############ Cart Functions ############
+############ 카트 기능들 ############
 
-# add or swap exercises
+# 운동추가 또는 교환
 def add(candidates, cart, muscles, i=None):
     if muscles:
-        # pick muscle group to browse exercises
-        choices = exercises.filter(candidates, muscles[prompt.options("Pick a muscle group to browse exercises to add:", muscles, None)-1], key="Group")
+        # 운동 근육 그룹 선택
+        choices = exercises.filter(candidates, muscles[prompt.options("추가할 운동 근육 그룹을 선택하시오:", muscles, None)-1], key="Group")
     else:
         choices = candidates
-    # choose exercises from list
-    choice = choices[prompt.options("Which exercise would you like to add?", choices, key="Name")-1]
-    # add or swap the choice and return the cart
+    # 리스트에서 운동 선택
+    choice = choices[prompt.options("어떤 운동을 추가 하시겠습니까?", choices, key="Name")-1]
+    # 선택 항목을 추가 또는 교환하고 카트 반환
     if i:
         cart[i] = choice
     else:
         cart.append(choice)
     return cart
 
-# reorder exercises
+# 운동 재설정
 def reorder(cart):
-    # choose exercise to move
-    i = prompt.options("Which exercise would you like to move?", cart, key="Name")-1
+    # 실행할 운동 선택
+    i = prompt.options("어떠한 운동을 옮기시겠습니까?", cart, key="Name")-1
     choice = [cart[i]]
     cart = cart[:i] + cart[i+1:]
-    # choose where to put the exercise
-    i = prompt.options("Which exercise would you like to move it before?", cart, key="Name")-1
+    # 이전에 실행할 운동 선택
+    i = prompt.options("이전에 어떤 운동으로 옮기고 싶으세요?", cart, key="Name")-1
     return cart[:i] + choice + cart[i:]
 
-# get random list of exercises
+# 무작위로 운동 리스트 얻기
 def randomize(candidates):
-    # choose number of exercises in routine
-    size = prompt.range("How many exercises do you want in your routine?", 1, min(len(candidates),12))
+    # 루틴 내에서 운동 개수 선택
+    size = prompt.range("루틴 내에서 얼마나 많은 운동개수를 원합니까?", 1, min(len(candidates),12))
     cart = exercises.random.sample(candidates, size)
-    # display exercises in cart
-    prompt.list("Exercises in routine:", cart, "Name")
+    # 운동 종류 표시
+    prompt.list("루틴 운동:", cart, "Name")
     return cart
 
-# manually select exercises
+# 운동 수동 선택
 def shop(pool):
-    # set up the cart of selected exercises
+    # 선택된 운동 카트에 준비
     cart = []
-    # loop through exercise selection
+    # 루프를 통한 운동 선택
     while(True):
-        # create candidates list and get all the muscles
+        #  후보리스트 생성,
         candidates = [p for p in pool if p not in cart]
         if len(candidates) > 0:
             muscles = list(exercises.unique(candidates, "Group"))
-            # choose an exercise to add to cart
+            # 카트에 추가할 운동 선택
             cart = add(candidates, cart, muscles, None)
-            # display exercises in cart
-            prompt.list("Exercises in routine:", cart, "Name")
-            # add another exercise or move on
-            if prompt.confirm("Would you like to add another exercise?") == "n":
+            # 카트에 운동 표시
+            prompt.list("루틴 운동:", cart, "Name")
+            # 또다른 운동추가 또는 다음으로 이동
+            if prompt.confirm("또 다른 운동을 추가하시겠습니까?") == "n":
                 break
         else:
-            prompt.error("There are no more exercises that can be added.")
+            prompt.error("추가할 수 있는 운동이 없습니다.")
             break
     return cart
 
-# edit exercises
+# 운동 수정
 def edit(cart, pool):
-    if prompt.confirm("Do you need to edit or reorder the exercises in your routine?") == "y":
+    if prompt.confirm("운동 루틴에서 수정하거나 재설정을 원하시나요? ") == "y":
         while(True):
-            # reset candidates list and get all the muscles
+            # 후보리스트 재설정
             candidates = [p for p in pool if p not in cart]
             muscles = list(exercises.unique(candidates, "Group"))
-            # check which task needs to be done
-            option = prompt.options("What would you like to do?", ["Add exercise", "Remove exercise", "Swap exercise", "Reorder exercise"])
-            # add exercise
+            # 필요로 하는 일 체크
+            option = prompt.options("무엇을 하길 원합니까?", ["운동 추가", "운동 삭제", "운동 변경", "운동 재설정"])
+            # 운동추가
             if option == 1:
                 if len(candidates) > 0:
-                    # choose an exercise to add to cart
+                    # 카트에 추가할 운동 선택
                     cart = add(candidates, cart, muscles)
-                    # display exercises in cart
-                    prompt.list("Exercises in routine:", cart, "Name")
+                    # 카트에 운동 표시
+                    prompt.list("운동 루틴:", cart, "Name")
                 else:
-                    prompt.error("There are no more exercises that can be added.")
-            # remove exercise
+                    prompt.error("더 이상 추가할 수 있는 운동이 없습니다.")
+            # 운동 삭제
             elif option == 2:
-                # remove chosen exercise from cart
-                del cart[prompt.options("Which exercise would you like to remove?", cart, key="Name")-1]
-                # display exercises in cart
-                prompt.list("Exercises in routine:", cart, "Name")
-            # swap exercise
+                # 카트에 선택된 운동 삭제
+                del cart[prompt.options("어떤 운동을 제거 하시겠습니까?", cart, key="Name")-1]
+                # 카트에 운동 표시
+                prompt.list("운동 루틴:", cart, "Name")
+            # 운동 변경
             elif option == 3:
                 if len(candidates) > 0:
-                    # choose an exercise to swap into cart
-                    cart = add(candidates, cart, muscles, i=prompt.options("Which exercise would you like to swap?", cart, key="Name")-1)
-                    # display exercises in cart
-                    prompt.list("Exercises in routine:", cart, "Name")
+                    # 카트에서 변경할 운동 선택
+                    cart = add(candidates, cart, muscles, i=prompt.options("어떤 운동을 변경 하시겠습니까?", cart, key="Name")-1)
+                    # 카트에 운동 표시
+                    prompt.list("운동 루틴:", cart, "Name")
                 else:
-                    prompt.error("There are no more exercises that can be swapped in.")
-            # reorder exercise
+                    prompt.error("더 이상 변경할 수 있는 운동이 없습니다.")
+            # 운동 재설정
             elif option == 4:
                 cart = reorder(cart)
-                # display exercises in cart
-                prompt.list("Exercises in routine:", cart, "Name")
+                # 카트에 운동 표시
+                prompt.list("운동 루틴:", cart, "Name")
             # do more to cart or move on
-            if prompt.confirm("Do you need to edit or reorder more exercises in your routine?") == "n":
+            if prompt.confirm("운동 루틴에서 수정하거나 재설정을 원하시나요?") == "n":
                 break
     return cart
 
 
-############ Parameter Functions ############
+############ 매개 변수 함수 ############
 
-# configure start and goal for activities
+# 활동 시작 및 목표 구성
 def configure(cart):
-    # configure each activity
+    # 각 활동 구성
     for activity in cart:
-        # configure variation
+        # 변형 구성
         if len(activity["Variations"]) > 1:
             activity["Variations"] = [activity["Variations"][prompt.options("Which variation of " + activity["Name"].upper() + " do you plan on doing?", activity["Variations"])-1]]
         activity["Name"] = activity["Variations"][0] + " " + activity["Name"]

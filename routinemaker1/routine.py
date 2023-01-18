@@ -118,43 +118,43 @@ def configure(cart):
         if len(activity["Variations"]) > 1:
             activity["Variations"] = [activity["Variations"][prompt.options("Which variation of " + activity["Name"].upper() + " do you plan on doing?", activity["Variations"])-1]]
         activity["Name"] = activity["Variations"][0] + " " + activity["Name"]
-        # configure reps or duration
+        # 개수와 세트 수 설정
         activity["Start"] = prompt.range("How many continuous " + activity["Unit"] + " of " + activity["Name"].upper() + " are you currently comfortable with?", activity["Min"], activity["Max"])
         activity["Goal"] = prompt.range("How many continuous " + activity["Unit"] + " of " + activity["Name"].upper() + " is your goal?", activity["Start"], activity["Max"])
-        # configure weights
+        # 무게 설정
         if activity["Type"] == "Strength" and activity["Variations"][0] != "Bodyweight":
             activity["Start Weight"] = prompt.range("What weight are you currently using for " + activity["Name"].upper() + "? (lbs)", 0, 500)
             activity["Goal Weight"] = prompt.range("What's your goal weight for " + activity["Name"].upper() + "? (lbs)", activity["Start Weight"], 500)
     return cart
 
-# configure parameters
+# 매개 변수 구성
 def parameters(cart):
-    # set array of curves to be processed in generate()
-    curves = ["Linear", "Exponential", "Logarithmic"]
-    # populate parameters
+    # 생성 시 처리할 원곡선 배열 설정()
+    curves = ["선형", "지수", "로그"]
+    # 매개변수 채우기
     params = dict()
-    params["Weeks"] = prompt.range("How many weeks would you like your routine to last?", 3, 12)
-    params["Days"] = prompt.range("How many days per week are you planning on exercising?", 2, 6)
+    params["Weeks"] = prompt.range("당신의 루틴이 몇주동안 지속되기를 원합니까?", 3, 12)
+    params["Days"] = prompt.range("당신은 일주일에 몇일 운동할 계획입니까?", 2, 6)
     params["Cart"] = configure(cart)
     if cart[0]["Type"] == "Strength" or cart[0]["Type"] == "HIIT":
-        params["Minsets"] = prompt.range("What's the mininum number of sets you'd like to do for each exercise?", 2, 12)
-        params["Maxsets"] = prompt.range("What's the maximum number of sets you'd like to do for each exercise?", params["Minsets"], 12)
+        params["Minsets"] = prompt.range("각 운동에 대해 수행할 최소 세트 수는 얼마입니까?", 2, 12)
+        params["Maxsets"] = prompt.range("각 운동에 대해 수행할 최대 세트 수는 얼마입니까?", params["Minsets"], 12)
     elif cart[0]["Type"] == "Cardio":
-        params["Maxsets"] = prompt.range("What's the maximum number of intervals you want in your routine?", 1, 12)
-        params["Seed"] = prompt.range("Please choose a random number to seed the routine.", 1, 1000)
-    params["Curve"] = curves[prompt.options("What type of curve do you want to use to create your routine?", curves)-1]
+        params["Maxsets"] = prompt.range("너의 루틴에서 최대 interval 수는 몇 번입니까?", 1, 12)
+        params["Seed"] = prompt.range("루틴을 시드할 임의의 숫자를 선택해주세요.", 1, 1000)
+    params["Curve"] = curves[prompt.options("루틴을 만드는데 사용하기 원하는 곡선 유형은 무엇입니까?", curves)-1]
     return params
 
-############ Calculation Functions ############
+############ 계산 기능들 ############
 
-# return y value for x given linear curve that goes through p1 and p2
+# p1과 p2를 통과하는 주어진 선형 곡선에 대한 y 값 반환
 def linear(p1, p2, x):
     m = (p2[1]-p1[1])/(p2[0]-p1[0])
     b = p1[1]-m*p1[0]
     y = m*x+b
     return max(y,0)
 
-# return y value for x given exponential curve that goes through p1 and p2
+# p1과 p2를 통과하는 주어진 지수 곡선에 대한 y 반환 값
 def exponential(p1, p2, x):
     xvals = np.array([p1[0], p2[0]])
     yvals = np.array([p1[1]+1, p2[1]+1])
@@ -162,7 +162,7 @@ def exponential(p1, p2, x):
     y = np.exp(params[1])*np.exp(params[0]*(x))-1
     return max(y,0)
 
-# return y value for x given logarithmic curve that goes through p1 and p2
+# p1과 p2를 통과하는 x의 주어진 로그 곡선에 대한 y 값 반환
 def logarithmic(p1, p2, x):
     xvals = np.array([p1[0]+1, p2[0]+1])
     yvals = np.array([p1[1], p2[1]])
@@ -170,26 +170,26 @@ def logarithmic(p1, p2, x):
     y = params[0]*np.log(x+1)+params[1]
     return max(y,0)
 
-# returns a random number within the configured range
+# 구성된 범위 내의 임의의 숫자를 반환
 def fuzzy():
     return random.uniform(0.7, 1.5)
 
-# round to the nearest n
+# n에 가깝게 반올림
 def nround(num, n=1):
     result = round(num/n)*n
     if n >= 1:
         return int(result)
     return result
 
-############ Output Functions ############
+############ 출력 기능들 ############
 
-# generate routine as an array of activities with days
+# 일 단위의 활동 배열로 루틴 생성
 def calculate(parameters):
     routine = []
-    # seed random numbers
+    # 랜덤 숫자 시드
     if "Seed" in parameters:
         random.seed(parameters["Seed"])
-    # generate each exercise
+    # 각각의 운동 생성
     for activity in parameters["Cart"]:
         exercise = dict()
         exercise["Name"] = activity["Name"]
@@ -197,7 +197,7 @@ def calculate(parameters):
         exercise["Unit"] = activity["Unit"]
         exercise["Maxsets"] = parameters["Maxsets"]
         exercise["Days"] = []
-        # generate each day
+        # 각 날짜 생성
         for w in range(1, parameters["Weeks"]+1):
             for d in range(1, parameters["Days"]+1):
                 day = dict()
@@ -205,44 +205,44 @@ def calculate(parameters):
                 day["Day"] = d
                 day["Sequence"] = (w-1)*parameters["Days"]+d
                 day["Progress"] = day["Sequence"]/(parameters["Weeks"]*parameters["Days"])
-                # calculate curves for strength and HIIT
+                # strength 및 HIIT에 대한 곡선 계산
                 if exercise["Type"] == "Strength" or exercise["Type"] == "HIIT":
-                    # linear
+                    # 선형
                     if parameters["Curve"] == "Linear":
                         day["Sets"] = nround(linear([0,parameters["Minsets"]], [1,parameters["Maxsets"]], day["Progress"]))
                         day["Reps"] = nround(linear([0,activity["Start"]], [1,activity["Goal"]], day["Progress"]), activity["Step"])
                         if "Start Weight" in activity:
                             day["Weight"] = nround(linear([0,activity["Start Weight"]], [1,activity["Goal Weight"]], day["Progress"]), 5)
-                    # exponential
+                    # 지수
                     elif parameters["Curve"] == "Exponential":
                         day["Sets"] = nround(exponential([0,parameters["Minsets"]], [1,parameters["Maxsets"]], day["Progress"]))
                         day["Reps"] = nround(exponential([0,activity["Start"]], [1,activity["Goal"]], day["Progress"]), activity["Step"])
                         if "Start Weight" in activity:
                             day["Weight"] = nround(exponential([0,activity["Start Weight"]], [1,activity["Goal Weight"]], day["Progress"]), 5)
-                    # logarithmic
+                    # 로그
                     elif parameters["Curve"] == "Logarithmic":
                         day["Sets"] = nround(logarithmic([0,parameters["Minsets"]], [1,parameters["Maxsets"]], day["Progress"]))
                         day["Reps"] = nround(logarithmic([0,activity["Start"]], [1,activity["Goal"]], day["Progress"]), activity["Step"])
                         if "Start Weight" in activity:
                             day["Weight"] = nround(logarithmic([0,activity["Start Weight"]], [1,activity["Goal Weight"]], day["Progress"]), 5)
-                # calculate curves for Cardio
+                # Cardio에 대한 곡선 계산
                 elif exercise["Type"] == "Cardio":
-                    # linear
+                    # 선형
                     if parameters["Curve"] == "Linear":
                         day["Target"] = nround(linear([0,min(activity["Start"]*2, activity["Goal"])], [1,activity["Goal"]], day["Progress"]), activity["Step"])
                         day["Intervals"] = parameters["Maxsets"]-nround(linear([0,1], [1,parameters["Maxsets"]], day["Progress"]))+1
-                    # exponential
+                    # 지수
                     elif parameters["Curve"] == "Exponential":
                         day["Target"] = nround(exponential([0,min(activity["Start"]*2, activity["Goal"])], [1,activity["Goal"]], day["Progress"]), activity["Step"])
                         day["Intervals"] = parameters["Maxsets"]-nround(exponential([0,1], [1,parameters["Maxsets"]], day["Progress"]))+1
-                    # logarithmic
+                    # 로그
                     elif parameters["Curve"] == "Logarithmic":
                         day["Target"] = nround(logarithmic([0,min(activity["Start"]*2, activity["Goal"])], [1,activity["Goal"]], day["Progress"]), activity["Step"])
                         day["Intervals"] = parameters["Maxsets"]-nround(logarithmic([0,1], [1,parameters["Maxsets"]], day["Progress"]))+1
-                    # first day is always overwritten with max intervals
+                    # 첫날은 항상 최대간격으로 설정
                     if day["Sequence"] == 1:
                         day["Intervals"] = parameters["Maxsets"]
-                    # create the segments
+                    # 세그먼트 생성
                     if day["Progress"] == 1:
                         # last day is always the goal
                         day["Segments"] = [activity["Goal"]]
@@ -255,27 +255,27 @@ def calculate(parameters):
         routine.append(exercise)
     return routine
 
-# outputs routine as a spreadsheet
+# 도표 상태로 루틴 출력
 def output(routine):
-    # get filename
-    filename = prompt.blurb("What do you want to name the output file? (ie: routine.xlsx)")
+    # 파일 이름 얻기
+    filename = prompt.blurb("출력 파일의 이름을 지정할 항목을 선택하십시오(예: routine.xlsx)")
     if not ".xlsx" in filename:
         filename = filename + ".xlsx"
-    # start writing spreadsheet
+    # 도표 쓰기 시작
     workbook = xlsxwriter.Workbook(filename)
     worksheet = workbook.add_worksheet()
-    # set up row and column iterators
+    # 행 및 열 반복기 설정
     row = 0
     col = 0
-    # set up formats
+    # 포맷 설정
     title = workbook.add_format({"bold": True, "align": "center", "font_color": "#ffffff", "bg_color": "#333333", "border": 1})
     dark = workbook.add_format({"align": "center", "font_color": "#ffffff", "bg_color": "#666666", "border": 1})
     gray = workbook.add_format({"align": "center", "bg_color": "#cccccc", "border": 1})
     light = workbook.add_format({"align": "center", "bg_color": "#eeeeee", "border": 1})
     white = workbook.add_format({"align": "center", "font_color": "#777777", "bg_color": "#ffffff", "border": 1})
-    # format exercises
+    # 운동 포맷
     for exercise in routine:
-        # format strength and HIIT
+        # strength,  HIIT 포맷
         if exercise["Type"] == "Strength" or exercise["Type"] == "HIIT":
             worksheet.merge_range(row, col, row, col+exercise["Maxsets"]+1, exercise["Name"], title)
             row += 1
@@ -304,7 +304,7 @@ def output(routine):
                     col += 1
                 row += 1
                 col = 0
-        # format cardio
+        # cardio 포맷
         elif exercise["Type"] == "Cardio":
             worksheet.merge_range(row, col, row, col+exercise["Maxsets"]+1, exercise["Name"] + " (" + exercise["Unit"].title() + ")", title)
             row += 1

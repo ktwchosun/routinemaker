@@ -119,12 +119,12 @@ def configure(cart):
             activity["Variations"] = [activity["Variations"][prompt.options("Which variation of " + activity["Name"].upper() + " do you plan on doing?", activity["Variations"])-1]]
         activity["Name"] = activity["Variations"][0] + " " + activity["Name"]
         # 개수와 세트 수 설정
-        activity["Start"] = prompt.range("How many continuous " + activity["Unit"] + " of " + activity["Name"].upper() + " are you currently comfortable with?", activity["Min"], activity["Max"])
-        activity["Goal"] = prompt.range("How many continuous " + activity["Unit"] + " of " + activity["Name"].upper() + " is your goal?", activity["Start"], activity["Max"])
+        activity["Start"] = prompt.range(activity["Name"].upper() + "연속 몇개까지 쉽게 할 수 있습니까?", activity["Min"], activity["Max"])
+        activity["Goal"] = prompt.range(activity["Name"].upper() + "연속 몇개까지 너의 목표입니까?", activity["Start"], activity["Max"])
         # 무게 설정
         if activity["Type"] == "Strength" and activity["Variations"][0] != "Bodyweight":
-            activity["Start Weight"] = prompt.range("What weight are you currently using for " + activity["Name"].upper() + "? (lbs)", 0, 500)
-            activity["Goal Weight"] = prompt.range("What's your goal weight for " + activity["Name"].upper() + "? (lbs)", activity["Start Weight"], 500)
+            activity["Start Weight"] = prompt.range("현재 사용 중인 무게는 얼마입니까 " + activity["Name"].upper() + "? (lbs)", 0, 500)
+            activity["Goal Weight"] = prompt.range("너의 목표 무게는 얼마입니까 " + activity["Name"].upper() + "? (lbs)", activity["Start Weight"], 500)
     return cart
 
 # 매개 변수 구성
@@ -140,7 +140,7 @@ def parameters(cart):
         params["Minsets"] = prompt.range("각 운동에 대해 수행할 최소 세트 수는 얼마입니까?", 2, 12)
         params["Maxsets"] = prompt.range("각 운동에 대해 수행할 최대 세트 수는 얼마입니까?", params["Minsets"], 12)
     elif cart[0]["Type"] == "Cardio":
-        params["Maxsets"] = prompt.range("너의 루틴에서 최대 interval 수는 몇 번입니까?", 1, 12)
+        params["Maxsets"] = prompt.range("너의 루틴에서 최대 간격 수는 몇 번입니까?", 1, 12)
         params["Seed"] = prompt.range("루틴을 시드할 임의의 숫자를 선택해주세요.", 1, 1000)
     params["Curve"] = curves[prompt.options("루틴을 만드는데 사용하기 원하는 곡선 유형은 무엇입니까?", curves)-1]
     return params
